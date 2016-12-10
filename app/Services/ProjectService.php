@@ -5,6 +5,7 @@ namespace CodeProject\Services;
 
 use CodeProject\Repositories\ProjectRepositoryInterface;
 use CodeProject\Validators\ProjectValidator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProjectService
@@ -36,6 +37,8 @@ class ProjectService
             return $this->repository->update($dada, $id);
         }catch (ValidatorException $e){
             return ['error' => true, 'message' => $e->getMessageBag()];
+        } catch (ModelNotFoundException $e){
+            return ["error" => true, "message" => "Projeto não encontrado"];
         }
     }
 }

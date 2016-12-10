@@ -5,6 +5,7 @@ namespace CodeProject\Http\Controllers;
 
 use CodeProject\Repositories\ClientRepositoryInterface;
 use CodeProject\Services\ClientService;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 
@@ -39,7 +40,12 @@ class ClientController extends Controller
 
     public function show($id)
     {
-        return $this->repository->find($id);
+        try{
+            return $this->repository->find($id);
+        }catch (ModelNotFoundException $e){
+            return ["error" => true, "message" => "Cliente não encontrado"];
+        }
+
     }
 
     public function update(Request $request, $id)
@@ -49,6 +55,6 @@ class ClientController extends Controller
 
     public function destroy($id)
     {
-        return $this->repository->delete($id);
+        return $this->service->delete($id);
     }
 }
