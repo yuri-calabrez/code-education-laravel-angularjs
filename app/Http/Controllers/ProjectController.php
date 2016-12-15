@@ -62,11 +62,26 @@ class ProjectController extends Controller
 
     public function destroy($id)
     {
-        try {
-            $this->repository->delete($id);
-            return ["error" => false, "message" => "Projeto removido com sucesso!"];
-        } catch (ModelNotFoundException $e) {
-            return ["error" => true, "message" => "Projeto não encontrado"];
-        }
+        return $this->service->delete($id);
+    }
+
+    public function members($id)
+    {
+        return $this->service->showMembers($id);
+    }
+
+    public function addMember($id, $memberId)
+    {
+        return $this->service->addMember($id, $memberId);
+    }
+
+    public function removeMember($id, $memberId)
+    {
+        return $this->service->removeMember($id, $memberId);
+    }
+
+    public function isMember($id, $memberId)
+    {
+        return $this->service->isMember($id, $memberId);
     }
 }
