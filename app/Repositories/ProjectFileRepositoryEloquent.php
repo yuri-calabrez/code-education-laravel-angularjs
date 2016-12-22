@@ -2,16 +2,17 @@
 
 namespace CodeProject\Repositories;
 
+use CodeProject\Presenters\ProjectFilePresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeProject\Entities\ProjectMembers;
-use CodeProject\Validators\ProjectMembersValidator;
+use CodeProject\Entities\ProjectFile;
+use CodeProject\Validators\ProjectFileValidator;
 
 /**
- * Class ProjectMembersRepositoryEloquent
+ * Class ProjectFileRepositoryEloquent
  * @package namespace CodeProject\Repositories;
  */
-class ProjectMembersRepositoryEloquent extends BaseRepository implements ProjectMembersRepositoryInterface
+class ProjectFileRepositoryEloquent extends BaseRepository implements ProjectFileRepositoryInterface
 {
     /**
      * Specify Model class name
@@ -20,7 +21,7 @@ class ProjectMembersRepositoryEloquent extends BaseRepository implements Project
      */
     public function model()
     {
-        return ProjectMembers::class;
+        return ProjectFile::class;
     }
 
     
@@ -31,5 +32,10 @@ class ProjectMembersRepositoryEloquent extends BaseRepository implements Project
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function presenter()
+    {
+        return ProjectFilePresenter::class;
     }
 }

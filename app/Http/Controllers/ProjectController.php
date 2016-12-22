@@ -20,21 +20,15 @@ class ProjectController extends Controller
 
     public function __construct(ProjectRepositoryInterface $repository, ProjectService $service)
     {
-
         $this->repository = $repository;
         $this->service = $service;
+        $this->middleware('check-project-permission', ['except' => ['index', 'store']]);
     }
 
     public function index()
     {
         //return $this->repository->with(['client', 'user'])->all();
         return $this->repository->findWhere(['owner_id' => \Authorizer::getResourceOwnerId()]);
-    }
-
-
-    public function create()
-    {
-        //
     }
 
 
@@ -47,9 +41,6 @@ class ProjectController extends Controller
     public function show($id)
     {
         try {
-            if($this->checkProjectPermissions($id) == false){
-                return ["message" => "Você não possui permissão para acessar este projeto"];
-            }
             return $this->repository->find($id);
         } catch (ModelNotFoundException $e) {
             return ["error" => true, "message" => "Projeto não encontrado"];
@@ -60,18 +51,12 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        if($this->checkProjectPermissions($id) == false){
-            return ["message" => "Você não possui permissão para acessar este projeto"];
-        }
         return $this->service->update($id, $request->all());
     }
 
 
     public function destroy($id)
     {
-        if($this->checkProjectPermissions($id) == false){
-            return ["message" => "Você não possui permissão para acessar este projeto"];
-        }
         return $this->service->delete($id);
     }
 
@@ -95,7 +80,7 @@ class ProjectController extends Controller
         return $this->service->isMember($id, $memberId);
     }
 
-    private function checkProjectOwner($projecId)
+    /*private function checkProjectOwner($projecId)
     {
         $userId = \Authorizer::getResourceOwnerId();
         return $this->repository->isOwner($projecId, $userId);
@@ -113,5 +98,5 @@ class ProjectController extends Controller
             return true;
         }
         return false;
-    }
+    }*/
 }

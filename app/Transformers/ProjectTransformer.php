@@ -7,7 +7,7 @@ use League\Fractal\TransformerAbstract;
 
 class ProjectTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = ['members'];
+    protected $defaultIncludes = ['members', 'client', 'files', 'notes', 'tasks'];
 
     public function transform(Project $project)
     {
@@ -25,6 +25,26 @@ class ProjectTransformer extends TransformerAbstract
 
     public function includeMembers(Project $project)
     {
-        return $this->collection($project->members, new ProjectMemberTransformer());
+        return $this->collection($project->members, new MemberTransformer());
+    }
+
+    public function includeClient(Project $project)
+    {
+        return $this->item($project->client, new ClientTransformer());
+    }
+
+    public function includeNotes(Project $project)
+    {
+        return $this->collection($project->notes, new ProjectNoteTransformer());
+    }
+
+    public function includeTasks(Project $project)
+    {
+        return $this->collection($project->tasks, new ProjectTaskTransformer());
+    }
+
+    public function includeFiles(Project $project)
+    {
+        return $this->collection($project->files, new ProjectFileTransformer());
     }
 }
