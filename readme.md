@@ -1,13 +1,15 @@
 #Curso Laravel 5.1 com AngularJS na Amazon AWS
 
-##Fase 1 - Clients
+##Fase 1 - Laravel
+### Clients
 Nessa fase do projeto, você deverá apresentar um CRUD completo de nosso model Client.
 
 Sempre lembrando que toda a informação resultante deverá ser exibida para o usuário final como um json.
 
 Não se esqueça de utilizar corretamente os verbos HTTP.
 
-##Fase 2 - Repositories e Services
+##Fase 2 - Laravel
+### Repositories e Services
 * Faça o CRUD completo de nossa Entidade Client
 
 * Crie uma nova entidade chamada Project
@@ -16,7 +18,8 @@ Não se esqueça de utilizar corretamente os verbos HTTP.
 
 * Na listagem dos dados, traga também as informações sobre o owner_id e client_id
 
-##Fase 3 - Task e Members
+##Fase 3 - Laravel
+### Task e Members
 Agora que você está entendendo o processo de relacionamento e disponibilização das APIs relacionadas a Projects, faça:
 
 1) Crie a entidade ProjectTask, com os seguintes campos e disponibilize os endpoints (rotas) project/tasks.
@@ -46,7 +49,8 @@ No ProjectService, crie dois métodos:
 
 Crie um endpoint (rota): /project/{id}/members para ter acesso a todos os membros de um projeto.
 
-##Fase 4 - Finalizando backend
+##Fase 4 - Laravel
+### Finalizando backend
 
 Agora que já temos nossa estrutura montada em relação ao projeto, precisamos finalizar a parte "base" do backend para que possamos iniciar o processo de integração com o AngularJS.
 
@@ -57,3 +61,11 @@ Faça:
 * Termine o processo de inclusão de arquivos / upload validando possíveis tipos de erros
 * Processo de remoção de arquivos do projeto
 * Crie um seeder chamado OAuthClientSeeder para gerar pelo menos um client na tabela oauth_clients
+
+##Fase 1 - AngularJs
+### Configurando o ambiente de desenvolvimento
+Agora que você já viu todo processo de preparação do nosso front-end, você deve reproduzir o mesmo ambiente em seu projeto.
+
+É preciso que ao digitarmos "**gulp watch-dev**", ele realize todas as tarefas descritas para o desenvolvimento e quando
+
+digitarmos "**gulp default**" ou somente "**gulp**", o mesmo gere os arquivos all.js e all.css que será o resultado da união dos arquivos correspondentes.
