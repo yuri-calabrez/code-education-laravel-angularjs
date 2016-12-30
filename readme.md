@@ -69,3 +69,10 @@ Agora que você já viu todo processo de preparação do nosso front-end, você 
 É preciso que ao digitarmos "**gulp watch-dev**", ele realize todas as tarefas descritas para o desenvolvimento e quando
 
 digitarmos "**gulp default**" ou somente "**gulp**", o mesmo gere os arquivos all.js e all.css que será o resultado da união dos arquivos correspondentes.
+
+##Fase 2 - AngularJs
+###Realizando autenticação
+Agora que já realizamos a autenticação é preciso que você faça a mesma autenticação na rota #/login.
+
+Quando o usuário for autenticado, redirecione-o para #/home. Não se preocupe em restringir o acesso ao #/home quando não estivermos
+autenticados.
