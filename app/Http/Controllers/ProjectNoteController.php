@@ -28,7 +28,7 @@ class ProjectNoteController extends Controller
 
     public function index($id)
     {
-        return $this->repository->findWhere(['project_id' => $id]);
+        return $this->repository->skipPresenter()->findWhere(['project_id' => $id]);
     }
 
 
@@ -51,9 +51,9 @@ class ProjectNoteController extends Controller
      */
     public function show($id, $noteId)
     {
-        $data = $this->repository->findWhere(['project_id' => $id, 'id' => $noteId]);
-        if(count($data) >= 1) {
-            return $data;
+        $data = $this->repository->skipPresenter()->findWhere(['project_id' => $id, 'id' => $noteId]);
+        if(count($data) == 1) {
+            return $data[0];
         } else{
             return ["error" => true, "message" => "Nota nao encontrada"];
         }
