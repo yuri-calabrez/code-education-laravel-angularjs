@@ -18,7 +18,7 @@
                         <tr ng-repeat="projectNote in projectNotes">
                             <td>{{ projectNote.id }}</td>
                             <td>{{ projectNote.title}}</td>
-                            <td style="width: 80%;">{{ projectNote.note}}</td>
+                            <td>{{ projectNote.note | limitTo: 25}}...</td>
                             <td>
                                 <a ng-href="#/project/{{projectNote.project_id}}/notes/{{projectNote.id}}/edit" title="Editar">Editar</a> |
                                 <a ng-href="#/project/{{projectNote.project_id}}/notes/{{projectNote.id}}/remove" title="Excluir">Excluir</a>

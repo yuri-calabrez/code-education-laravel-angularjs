@@ -25,8 +25,6 @@ Route::group(['middleware' => 'oauth'], function(){
 
     Route::resource('project', 'ProjectController', ['except' => ['create', 'edit']]);
 
-    Route::resource('user', 'UserController');
-
     Route::group(['middleware' => 'check-project-permission', 'prefix' => 'project'], function(){
 
         //Project Note
@@ -52,5 +50,8 @@ Route::group(['middleware' => 'oauth'], function(){
         Route::post('{id}/file', 'ProjectFileController@store');
         Route::delete('{id}/file/{fileId}', 'ProjectFileController@destroy');
     });
+
+    Route::get('user/authenticated', 'UserController@authenticated');
+    Route::resource('user', 'UserController');
 
 });

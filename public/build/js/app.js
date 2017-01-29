@@ -3,9 +3,28 @@ var app = angular.module('app', ['ngRoute', 'angular-oauth2', 'app.controllers',
 angular.module('app.controllers', ['ngMessages', 'angular-oauth2']);
 angular.module('app.services', ['ngResource']);
 
-app.provider('appConfig', function () {
+app.provider('appConfig',['$httpParamSerializerProvider', function ($httpParamSerializerProvider) {
     var config = {
-        baseUrl: 'http://localhost:8000'
+        baseUrl: 'http://localhost:8000',
+        utils: {
+            transformRequest: function(data){
+              if(angular.isObject(data)){
+                  return $httpParamSerializerProvider.$get().data;
+              }
+              return data;
+            },
+            transformResponse: function (data, headers) {
+                var headersGetter = headers();
+                if (headersGetter['content-type'] == 'application/json' || headersGetter['content-type'] == 'text/json') {
+                    var dataJson = JSON.parse(data);
+                    if (dataJson.hasOwnProperty('data')) {
+                        dataJson = dataJson.data;
+                    }
+                    return dataJson;
+                }
+                return data;
+            }
+        }
     };
 
     return {
@@ -14,10 +33,11 @@ app.provider('appConfig', function () {
             return config;
         }
     }
-});
+}]);
 
-app.config(['$routeProvider', 'OAuthProvider', 'OAuthTokenProvider', 'appConfigProvider',
-    function ($routeProvider, OAuthProvider, OAuthTokenProvider, appConfigProvider) {
+app.config(['$routeProvider', '$httpProvider', 'OAuthProvider', 'OAuthTokenProvider', 'appConfigProvider',
+    function ($routeProvider, $httpProvider, OAuthProvider, OAuthTokenProvider, appConfigProvider) {
+        $httpProvider.defaults.transformResponse = appConfigProvider.config.utils.transformResponse;
         $routeProvider
             .when('/login', {
                 templateUrl: 'build/views/login.html',
@@ -46,6 +66,22 @@ app.config(['$routeProvider', 'OAuthProvider', 'OAuthTokenProvider', 'appConfigP
             .when('/clients/:id/remove', {
                 templateUrl: 'build/views/client/remove.html',
                 controller: 'ClientRemoveController'
+            })
+            .when('/projects', {
+                templateUrl: 'build/views/project/list.html',
+                controller: 'ProjectListController'
+            })
+            .when('/projects/new', {
+                templateUrl: 'build/views/project/new.html',
+                controller: 'ProjectNewController'
+            })
+            .when('/projects/:id/edit', {
+                templateUrl: 'build/views/project/edit.html',
+                controller: 'ProjectEditController'
+            })
+            .when('/projects/:id/remove', {
+                templateUrl: 'build/views/project/remove.html',
+                controller: 'ProjectRemoveController'
             })
             .when('/project/:id/notes', {
                 templateUrl: 'build/views/project-notes/list.html',
@@ -81,7 +117,8 @@ app.config(['$routeProvider', 'OAuthProvider', 'OAuthTokenProvider', 'appConfigP
                 secure: false
             }
         });
-    }]);
+    }])
+;
 
 app.run(['$rootScope', '$window', 'OAuth', function ($rootScope, $window, OAuth) {
     $rootScope.$on('oauth:error', function (event, rejection) {

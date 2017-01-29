@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use CodeProject\Http\Requests;
 use CodeProject\Http\Controllers\Controller;
+use LucaDegasperi\OAuth2Server\Authorizer;
 
 class UserController extends Controller
 {
@@ -17,8 +18,13 @@ class UserController extends Controller
 
     public function __construct(UserRepositoryInterface $repository)
     {
-
         $this->repository = $repository;
+    }
+
+    public function authenticated(Authorizer $authorizer)
+    {
+        $userId = $authorizer->getResourceOwnerId();
+        return $this->repository->find($userId);
     }
 
     /**

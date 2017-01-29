@@ -7,7 +7,10 @@
 	<title>Laravel</title>
 
 	@if(Config::get('app.debug'))
-		<link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+		<link rel="stylesheet" href="{{ asset('build/css/components.css') }}">
+		<link rel="stylesheet" href="{{ asset('build/css/flaticon.css') }}">
+		<link rel="stylesheet" href="{{ asset('build/css/font-awesome.css') }}">
 		<link rel="stylesheet" href="{{ asset('build/css/vendor/bootstrap-theme.min.css') }}">
 	@else
 		<link rel="stylesheet" href="{{ elixir('all.css') }}">
@@ -88,6 +91,11 @@
 		<script src="{{ asset('build/js/controllers/client/clientEdit.js') }}"></script>
 		<script src="{{ asset('build/js/controllers/client/clientRemove.js') }}"></script>
 
+		<script src="{{ asset('build/js/controllers/project/projectList.js') }}"></script>
+		<script src="{{ asset('build/js/controllers/project/projectNew.js') }}"></script>
+		<script src="{{ asset('build/js/controllers/project/projectEdit.js') }}"></script>
+		<script src="{{ asset('build/js/controllers/project/projectRemove.js') }}"></script>
+
 		<script src="{{ asset('build/js/controllers/project-notes/projectNoteList.js') }}"></script>
 		<script src="{{ asset('build/js/controllers/project-notes/projectNoteShow.js') }}"></script>
 		<script src="{{ asset('build/js/controllers/project-notes/projectNoteNew.js') }}"></script>
@@ -96,7 +104,9 @@
 
 		<!-- SERVICES -->
 		<script src="{{ asset('build/js/services/client.js') }}"></script>
+		<script src="{{ asset('build/js/services/project.js') }}"></script>
 		<script src="{{ asset('build/js/services/projectNote.js') }}"></script>
+		<script src="{{ asset('build/js/services/user.js') }}"></script>
 	@else
 		<script src="{{ elixir('all.js') }}"></script>
 	@endif

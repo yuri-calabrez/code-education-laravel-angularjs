@@ -29,7 +29,7 @@ class ClientController extends Controller
 
     public function index()
     {
-        return $this->repository->skipPresenter()->all();
+        return $this->repository->all();
     }
 
 
@@ -41,7 +41,7 @@ class ClientController extends Controller
     public function show($id)
     {
         try{
-            return $this->repository->skipPresenter()->find($id);
+            return $this->repository->find($id);
         }catch (ModelNotFoundException $e){
             return ["error" => true, "message" => "Cliente não encontrado"];
         }
