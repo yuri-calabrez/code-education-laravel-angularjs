@@ -35,16 +35,6 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group" ng-class="{'has-error' : !form.progress.$valid && form.progress.$touched}">
-                                <label class="col-md-4 control-label">Progresso</label>
-                                <input type="number" min="0" max="100" class="form-control" name="progress" ng-model="project.progress" required>
-                                <div class="help-block" ng-messages="form.progress.$error" ng-show="form.progress.$touched">
-                                    <div ng-message="required">Campo obrigatório</div>
-                                    <div ng-message="min">Valor minimo é 0</div>
-                                    <div ng-message="max">Valor maximo é 100</div>
-                                </div>
-                            </div>
-
                             <div class="form-group" ng-class="{'has-error' : !form.status.$valid && form.status.$touched}">
                                 <label class="col-md-4 control-label">Status</label>
                                 <select name="status" class="form-control" ng-model="project.status"
@@ -56,9 +46,18 @@
                                 </div>
                             </div>
 
+                            <div class="form-group" ng-class="{'has-error' : !form.progress.$valid && form.progress.$touched}">
+                                <label class="col-md-4 control-label">Progresso(%)</label>
+                                <input type="number" min="0" max="100" class="form-control" name="progress" ng-model="project.progress" required>
+                                <div class="help-block" ng-messages="form.progress.$error" ng-show="form.progress.$touched">
+                                    <div ng-message="required">Campo obrigatório</div>
+                                    <div ng-message="min">Valor minimo aceitavel é 0</div>
+                                    <div ng-message="max">Valor maximo aceitavel é 100</div>
+                                </div>
+                            </div>
                             <div class="form-group" ng-class="{'has-error' : !form.due_date.$valid && form.due_date.$touched}">
                                 <label class="col-md-4 control-label">Data de enrega</label>
-                                <input type="text" class="form-control" name="due_date" ng-model="project.due_date" required>
+                                <input type="date" class="form-control" name="due_date" ng-model="project.due_date" required>
                                 <div class="help-block" ng-messages="form.due_date.$error" ng-show="form.due_date.$touched">
                                     <div ng-message="required">Campo obrigatório</div>
                                 </div>

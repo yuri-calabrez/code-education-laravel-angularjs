@@ -1,15 +1,23 @@
-var app = angular.module('app', ['ngRoute', 'angular-oauth2', 'app.controllers', 'app.services']);
+var app = angular.module('app', ['ngRoute', 'angular-oauth2', 'app.controllers', 'app.services', 'app.filters']);
 
 angular.module('app.controllers', ['ngMessages', 'angular-oauth2']);
+angular.module('app.filters', []);
 angular.module('app.services', ['ngResource']);
 
 app.provider('appConfig',['$httpParamSerializerProvider', function ($httpParamSerializerProvider) {
     var config = {
         baseUrl: 'http://localhost:8000',
+        project: {
+            status: [
+                {value: 1, label: 'Não iniciado'},
+                {value: 2, label: 'Iniciado'},
+                {value: 3, label: 'Concluído'}
+            ]
+        },
         utils: {
             transformRequest: function(data){
               if(angular.isObject(data)){
-                  return $httpParamSerializerProvider.$get().data;
+                  return $httpParamSerializerProvider.$get()(data);
               }
               return data;
             },
@@ -37,6 +45,9 @@ app.provider('appConfig',['$httpParamSerializerProvider', function ($httpParamSe
 
 app.config(['$routeProvider', '$httpProvider', 'OAuthProvider', 'OAuthTokenProvider', 'appConfigProvider',
     function ($routeProvider, $httpProvider, OAuthProvider, OAuthTokenProvider, appConfigProvider) {
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        $httpProvider.defaults.headers.put['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        $httpProvider.defaults.transformRequest = appConfigProvider.config.utils.transformRequest;
         $httpProvider.defaults.transformResponse = appConfigProvider.config.utils.transformResponse;
         $routeProvider
             .when('/login', {

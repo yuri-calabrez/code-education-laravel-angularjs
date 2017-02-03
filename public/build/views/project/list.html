@@ -11,6 +11,7 @@
                             <th>Cliente</th>
                             <th>Descrição</th>
                             <th>Progresso</th>
+                            <th>Data de entrega</th>
                             <th>Ação</th>
                         </tr>
                         </thead>
@@ -21,6 +22,7 @@
                             <td>{{ project.client.data.name }}</td>
                             <td>{{ project.description | limitTo: 25 }}</td>
                             <td>{{ project.progress }}%</td>
+                            <td>{{ project.due_date | dateBr }}</td>
                             <td>
                                 <a ng-href="#/projects/{{ project.project_id }}/edit" title="Editar">Editar</a> |
                                 <a ng-href="#/projects/{{ project.project_id }}/remove" href="" title="Excluir"> Excluir</a>
