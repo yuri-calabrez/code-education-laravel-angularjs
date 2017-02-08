@@ -1,14 +1,22 @@
 angular.module('app.controllers')
-    .controller('ProjectEditController', ['$scope', '$cookies', '$routeParams', '$location', 'Project', 'Client',
-        function ($scope, $cookies, $routeParams, $location, Project, Client) {
-            $scope.project = Project.get({id: $routeParams.id});
+    .controller('ProjectEditController', ['$scope', '$cookies', '$routeParams', '$location', 'Project', 'Client', 'appConfig',
+        function ($scope, $cookies, $routeParams, $location, Project, Client, appConfig) {
+            Project.get({id: $routeParams.id}, function(data){
+                $scope.project = data;
+                $scope.clientSelected = data.client.data;
+            });
 
-            $scope.status = [
-                {value: 1, label: 'Não Inicializado'},
-                {value: 2, label: 'Em progresso'},
-                {value: 3, label: 'Finalizado'}
-            ];
-            $scope.clients = Client.query();
+            $scope.status = appConfig.project.status;
+
+            $scope.due_date = {
+                status: {
+                    opened: false
+                }
+            };
+
+            $scope.open = function($event){
+                $scope.due_date.status.opened = true;
+            };
 
             $scope.save = function () {
                 if ($scope.form.$valid) {
@@ -17,5 +25,23 @@ angular.module('app.controllers')
                         $location.path('/projects');
                     });
                 }
-            }
+            };
+
+            $scope.formatName = function (model) {
+                if(model){
+                    return model.name
+                }
+                return '';
+            };
+
+            $scope.getClients = function (name) {
+                return Client.query({
+                    search: name,
+                    searchFields: 'name:like'
+                }).$promise;
+            };
+
+            $scope.selectClient = function(item) {
+              $scope.project.client_id = item.id;
+            };
         }]);
