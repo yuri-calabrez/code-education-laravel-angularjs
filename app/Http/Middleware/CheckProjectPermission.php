@@ -4,6 +4,7 @@ namespace CodeProject\Http\Middleware;
 
 use Closure;
 use CodeProject\Http\Controllers\Auth\AuthProjectPermission;
+use CodeProject\Services\ProjectService;
 
 class CheckProjectPermission
 {
@@ -11,11 +12,11 @@ class CheckProjectPermission
     /**
      * @var AuthProjectPermission
      */
-    private $authProjectPermission;
+    private $projectService;
 
-    public function __construct(AuthProjectPermission $authProjectPermission)
+    public function __construct(ProjectService $projectService)
     {
-        $this->authProjectPermission = $authProjectPermission;
+        $this->projectService = $projectService;
     }
 
     /**
@@ -28,7 +29,7 @@ class CheckProjectPermission
     public function handle($request, Closure $next)
     {
         $projectId = ($request->route('id') ? $request->route('id') : $request->route('project'));
-        if($this->authProjectPermission->checkProjectPermissions($projectId) == false){
+        if($this->projectService->checkProjectPermissions($projectId) == false){
             return ["message" => "Você não possui permissão para acessar este projeto"];
         }
         return $next($request);

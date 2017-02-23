@@ -19,11 +19,16 @@ class ProjectFileController extends Controller
      */
     private $repository;
 
-    public function __construct(ProjectFileRepositoryInterface $repository ,ProjectFileService $service)
+    public function __construct(ProjectFileRepositoryInterface $repository, ProjectFileService $service)
     {
 
         $this->service = $service;
         $this->repository = $repository;
+    }
+
+    public function index($id)
+    {
+        return $this->repository->findWhere(['project_id' => $id]);
     }
 
     public function store(Request $request)
@@ -39,7 +44,29 @@ class ProjectFileController extends Controller
         return $this->service->create($data);
     }
 
-    public function destroy($id, $fileId)
+    public function showFile($id)
+    {
+        $filePath = $this->service->getFilePath($id);
+        $fileContent = file_get_contents($filePath);
+        $file64 = base64_encode($fileContent);
+        return [
+            'file' => $file64,
+            'size' => filesize($filePath),
+            'name' => $this->service->getFileName($id)
+        ];
+    }
+
+    public function show($id)
+    {
+        return $this->repository->find($id);
+    }
+
+    public function update(Request $request, $id)
+    {
+        return $this->service->update($request->all(), $id);
+    }
+
+    public function destroy($fileId)
     {
         return $this->service->delete($fileId);
     }

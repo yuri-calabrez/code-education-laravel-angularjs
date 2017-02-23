@@ -79,6 +79,7 @@
 		<script src="{{ asset('build/js/vendor/angular-cookies.min.js') }}"></script>
 		<script src="{{ asset('build/js/vendor/query-string.js') }}"></script>
 		<script src="{{ asset('build/js/vendor/angular-oauth2.min.js') }}"></script>
+		<script src="{{ asset('build/js/vendor/ng-file-upload.min.js') }}"></script>
 
 		<script src="{{ asset('build/js/app.js') }}"></script>
 
@@ -102,13 +103,23 @@
 		<script src="{{ asset('build/js/controllers/project-notes/projectNoteEdit.js') }}"></script>
 		<script src="{{ asset('build/js/controllers/project-notes/projectNoteRemove.js') }}"></script>
 
+		<script src="{{ asset('build/js/controllers/project-file/projectFileList.js') }}"></script>
+		<script src="{{ asset('build/js/controllers/project-file/projectFileNew.js') }}"></script>
+		<script src="{{ asset('build/js/controllers/project-file/projectFileEdit.js') }}"></script>
+		<script src="{{ asset('build/js/controllers/project-file/projectFileRemove.js') }}"></script>
+
+		<!-- DIRECTIVES -->
+		<script src="{{ asset('build/js/directives/projectFileDownload.js') }}"></script>
+
 		<!-- FILTERS -->
 		<script src="{{ asset('build/js/filters/date-br.js') }}"></script>
 
 		<!-- SERVICES -->
+		<script src="{{ asset('build/js/services/url.js') }}"></script>
 		<script src="{{ asset('build/js/services/client.js') }}"></script>
 		<script src="{{ asset('build/js/services/project.js') }}"></script>
 		<script src="{{ asset('build/js/services/projectNote.js') }}"></script>
+		<script src="{{ asset('build/js/services/projectFile.js') }}"></script>
 		<script src="{{ asset('build/js/services/user.js') }}"></script>
 	@else
 		<script src="{{ elixir('all.js') }}"></script>

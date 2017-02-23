@@ -17,4 +17,9 @@ class ProjectFile extends Model implements Transformable
         return $this->belongsTo(Project::class);
     }
 
+    public function getFileName()
+    {
+        return $this->id.'.'.$this->extension;
+    }
+
 }

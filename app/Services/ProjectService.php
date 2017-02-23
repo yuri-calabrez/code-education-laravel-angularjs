@@ -103,4 +103,24 @@ class ProjectService
             return ['error' => true, 'message' => 'Colaborador não encontrado'];
         }
     }
+
+    public function checkProjectOwner($projecId)
+    {
+        $userId = \Authorizer::getResourceOwnerId();
+        return $this->repository->isOwner($projecId, $userId);
+    }
+
+    public function checkProjectMember($projecId)
+    {
+        $userId = \Authorizer::getResourceOwnerId();
+        return $this->repository->hasMember($projecId, $userId);
+    }
+
+    public function checkProjectPermissions($projectId)
+    {
+        if($this->checkProjectOwner($projectId) or $this->checkProjectMember($projectId)){
+            return true;
+        }
+        return false;
+    }
 }
