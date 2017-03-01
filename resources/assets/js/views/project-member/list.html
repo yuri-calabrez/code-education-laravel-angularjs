@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Listagem de membros do projeto <a
+                        ng-href="/#/project/{{project_id}}/members/new"
+                        class="btn btn-info">Novo membro</a></div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Excluir</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="projectMember in projectMembers">
+                            <td>{{projectMember.user.data.name}}</td>
+                            <td><a ng-href="/#/project/{{projectMember.project_id}}/members/{{projectMember.id}}/remove"
+                                   class="btn btn-danger">Excluir</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

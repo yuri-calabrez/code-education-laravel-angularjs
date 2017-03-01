@@ -19,7 +19,7 @@
                             <td>{{ projectFile.name}}</td>
                             <td>{{ projectFile.description | limitTo: 25}}...</td>
                             <td>
-                                <project-file-download id-file="{{ projectFile.id }}"></project-file-download>
+                                <project-file-download id-project="{{ projectFile.project_id }}" id-file="{{ projectFile.id }}"></project-file-download>
                                 <!--<a ng-href="/project/file/{{projectFile.id}}/download"-->
                                    <!--title="Download" target="_blank">Download</a>-->
                             </td>

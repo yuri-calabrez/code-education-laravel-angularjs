@@ -11,6 +11,7 @@ use CodeProject\Entities\ProjectMember;
  */
 class ProjectMemberTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = ['user'];
 
     /**
      * Transform the \ProjectMember entity
@@ -21,8 +22,13 @@ class ProjectMemberTransformer extends TransformerAbstract
     public function transform(ProjectMember $projectMember)
     {
         return [
-            'id' => (int)$projectMember->id,
+            'id' => $projectMember->id,
             'project_id' => $projectMember->project_id
         ];
+    }
+
+    public function includeUser(ProjectMember $member)
+    {
+        return $this->item($member->member, new MemberTransformer());
     }
 }

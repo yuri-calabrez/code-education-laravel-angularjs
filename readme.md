@@ -120,3 +120,7 @@ As rotas deste CRUD serão semelhante ao formato que usamos no CRUD de client.
 ##Fase 5 - AngularJs
 ###Criando CRUD de Project file
 Nesta fase você deve fazer a implementação do CRUD de project file, igual fizemos neste capítulo.
+
+##Fase 6 - AngularJs
+###CRUD's de Project Task e Project Member
+Nesta fase você deve fazer o CRUD de project task e project member, usando o mesmo padrão que já utilizamos no curso. Além disto, você deve também no CRUD de project fazer a funcionalidade de autocomplete de client.

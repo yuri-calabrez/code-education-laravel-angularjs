@@ -37,9 +37,11 @@ class ProjectTaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
-        return $this->service->create($request->all());
+        $data = $request->all();
+        $data['project_id'] = $id;
+        return $this->service->create($data);
     }
 
     /**
@@ -51,10 +53,10 @@ class ProjectTaskController extends Controller
     public function show($id, $taskId)
     {
         $data = $this->repository->findWhere(['project_id' => $id, 'id' => $taskId]);
-        if(count($data) >= 1){
-            return $data;
+        if(isset($data['data']) && count($data['data']) == 1) {
+            return $data['data'][0];
         } else{
-            return ["error" => true, "message" => "Tarefa não encontrada"];
+            return ["error" => true, "message" => "Tarefa nao encontrada"];
         }
     }
 
@@ -68,7 +70,9 @@ class ProjectTaskController extends Controller
      */
     public function update(Request $request, $id, $taskId)
     {
-        return $this->service->update($taskId, $request->all());
+        $data = $request->all();
+        $data['project_id'] = $id;
+        return $this->service->update($taskId, $data);
     }
 
     /**

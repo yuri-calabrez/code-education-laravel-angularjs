@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Listagem de tarefas de projeto <a ng-href="#/project/{{project_id}}/tasks/new" class="btn btn-primary">Nova tarefa</a></div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Data Inicio</th>
+                            <th>Data Término</th>
+                            <th>Status</th>
+                            <th>Editar</th>
+                            <th>Remover</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr ng-repeat="projectTask in projectTasks">
+                            <td>{{ projectTask.id }}</td>
+                            <td>{{ projectTask.name}}</td>
+                            <td>{{ projectTask.start_date | dateBr}}</td>
+                            <td>{{ projectTask.due_date | dateBr}}</td>
+                            <td>{{ projectTask.status}}</td>
+                            <td><a ng-href="#/project/{{projectTask.project_id}}/tasks/{{projectTask.id}}/edit" title="Editar">Editar</a></td>
+                            <td><a ng-href="#/project/{{projectTask.project_id}}/tasks/{{projectTask.id}}/remove" title="Excluir">Excluir</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

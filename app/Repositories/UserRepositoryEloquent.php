@@ -16,6 +16,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
 
 class UserRepositoryEloquent extends BaseRepository implements UserRepositoryInterface
 {
+    protected $fieldSearchable = ['name'];
 
     public function model()
     {

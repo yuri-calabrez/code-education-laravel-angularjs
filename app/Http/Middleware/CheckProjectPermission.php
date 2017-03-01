@@ -3,14 +3,13 @@
 namespace CodeProject\Http\Middleware;
 
 use Closure;
-use CodeProject\Http\Controllers\Auth\AuthProjectPermission;
 use CodeProject\Services\ProjectService;
 
 class CheckProjectPermission
 {
 
     /**
-     * @var AuthProjectPermission
+     * @var ProjectService
      */
     private $projectService;
 
