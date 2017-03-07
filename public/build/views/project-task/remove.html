@@ -7,6 +7,8 @@
                     <p>Deseja realmente excluir a tarefa <b>{{projectTask.name}}</b>?</p>
                     <ul>
                         <li><strong>Nome:</strong> {{projectTask.name}}</li>
+                        <li><strong>Dada de inicio:</strong> {{projectTask.start_date | dateBr}}</li>
+                        <li><strong>Data termino:</strong> {{projectTask.due_date | dateBr}}</li>
                     </ul>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">

@@ -18,9 +18,8 @@ app.provider('appConfig',['$httpParamSerializerProvider', function ($httpParamSe
         },
         projectTask: {
             status: [
-                {value: 1, label: 'Não iniciado'},
-                {value: 2, label: 'Iniciado'},
-                {value: 3, label: 'Concluído'}
+                {value: 1, label: 'Incompleto'},
+                {value: 2, label: 'Completo'}
             ]
         },
         urls: {
@@ -130,15 +129,15 @@ app.config(['$routeProvider', '$httpProvider', 'OAuthProvider', 'OAuthTokenProvi
                 templateUrl: 'build/views/project-task/list.html',
                 controller: 'ProjectTaskListController'
             })
-            .when('/project/:id/tasks/new', {
+            .when('/project/:id/task/new', {
                 templateUrl: 'build/views/project-task/new.html',
                 controller: 'ProjectTaskNewController'
             })
-            .when('/project/:id/tasks/:idTask/edit', {
+            .when('/project/:id/task/:idTask/edit', {
                 templateUrl: 'build/views/project-task/edit.html',
                 controller: 'ProjectTaskEditController'
             })
-            .when('/project/:id/tasks/:idTask/remove', {
+            .when('/project/:id/task/:idTask/remove', {
                 templateUrl: 'build/views/project-task/remove.html',
                 controller: 'ProjectTaskRemoveController'
             })
@@ -161,10 +160,6 @@ app.config(['$routeProvider', '$httpProvider', 'OAuthProvider', 'OAuthTokenProvi
             .when('/project/:id/members', {
                 templateUrl: 'build/views/project-member/list.html',
                 controller: 'ProjectMemberListController'
-            })
-            .when('/project/:id/members/new', {
-                templateUrl: 'build/views/project-member/new.html',
-                controller: 'ProjectMemberNewController'
             })
             .when('/project/:id/members/:idProjectMember/remove', {
                 templateUrl: 'build/views/project-member/remove.html',

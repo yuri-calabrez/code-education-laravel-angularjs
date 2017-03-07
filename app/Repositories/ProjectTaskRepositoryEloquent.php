@@ -6,7 +6,6 @@ use CodeProject\Presenters\ProjectTaskPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use CodeProject\Entities\ProjectTask;
-use CodeProject\Validators\ProjectTaskValidator;
 
 /**
  * Class ProjectTaskRepositoryEloquent

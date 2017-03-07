@@ -124,3 +124,8 @@ Nesta fase você deve fazer a implementação do CRUD de project file, igual fiz
 ##Fase 6 - AngularJs
 ###CRUD's de Project Task e Project Member
 Nesta fase você deve fazer o CRUD de project task e project member, usando o mesmo padrão que já utilizamos no curso. Além disto, você deve também no CRUD de project fazer a funcionalidade de autocomplete de client.
+
+##Fase 7 - AngularJs
+###Autorizações e Middlewares na API
+
+Nesta fase você deve refatorar a API de modo que siga as regras de permissões e propriedades de Project, Project Notes, Project Member, etc, falada no capítulo anterior. Para isto deve criar os middlewares e proteger as rotas devidamente.

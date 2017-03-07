@@ -14,7 +14,7 @@ angular.module('app.services')
                     return appConfig.utils.transformRequest(dataCopy);
                 }
                 return data;
-            };
+            }
             return $resource(appConfig.baseUrl + '/project/:id/task/:idTask', {id: '@id', idTask: '@idTask'}, {
                 save: {
                     method: 'POST',
@@ -25,13 +25,13 @@ angular.module('app.services')
                     transformResponse: function (data, headers) {
                         var o = appConfig.utils.transformResponse(data, headers);
                         if (angular.isObject(o)) {
-                            if (o.hasOwnProperty('start_date')) {
+                            if (o.hasOwnProperty('start_date') && o.start_date) {
                                 var arrayDate = o.start_date.split('-'),
                                     month = parseInt(arrayDate[1]) - 1;
                                 o.start_date = new Date(arrayDate[0], month, arrayDate[2]);
                             }
 
-                            if(o.hasOwnProperty('due_date')) {
+                            if(o.hasOwnProperty('due_date') && o.due_date) {
                                 var arrayDate = o.due_date.split('-'),
                                     month = parseInt(arrayDate[1]) - 1;
                                 o.due_date = new Date(arrayDate[0], month, arrayDate[2]);

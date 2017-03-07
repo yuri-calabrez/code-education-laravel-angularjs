@@ -22,7 +22,7 @@
                             <label class="col-md-4 control-label">Data de início</label>
                             <div class="col-md-6">
                                 <p class="input-group" style="width: 100%;">
-                                    <input type="text" class="form-control" required datepicker-popup="dd/MM/yyyy"
+                                    <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy"
                                            ng-model="projectTask.start_date" is-open="start_date.status.opened"
                                            close-text="Fechar"/>
                                     <span class="input-group-btn">
@@ -32,7 +32,6 @@
                                 </p>
                                 <div class="help-block" ng-messages="form.start_date.$error"
                                      ng-show="form.start_date.$touched">
-                                    <div ng-message="required">Campo obrigatório</div>
                                     <div ng-message="date">Data inválida</div>
                                 </div>
                             </div>
@@ -43,7 +42,7 @@
                             <label class="col-md-4 control-label">Data da entrega</label>
                             <div class="col-md-6">
                                 <p class="input-group" style="width: 100%;">
-                                    <input type="text" class="form-control" required datepicker-popup="dd/MM/yyyy"
+                                    <input type="text" class="form-control" datepicker-popup="dd/MM/yyyy"
                                            ng-model="projectTask.due_date" is-open="due_date.status.opened"
                                            close-text="Fechar"/>
                                     <span class="input-group-btn">
@@ -53,13 +52,12 @@
                                 </p>
                                 <div class="help-block" ng-messages="form.due_date.$error"
                                      ng-show="form.due_date.$touched">
-                                    <div ng-message="required">Campo obrigatório</div>
                                     <div ng-message="date">Data inválida</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group" ng-class="{'has-error' : !form.name.$valid && form.name.$touched}">
+                        <div class="form-group" ng-class="{'has-error' : !form.staus.$valid && form.status.$touched}">
                             <label class="col-md-4 control-label">Status</label>
                             <div class="col-md-6">
                                 <select name="status" class="form-control" class="form-control" ng-model="projectTask.status"
