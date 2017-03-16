@@ -129,3 +129,10 @@ Nesta fase você deve fazer o CRUD de project task e project member, usando o me
 ###Autorizações e Middlewares na API
 
 Nesta fase você deve refatorar a API de modo que siga as regras de permissões e propriedades de Project, Project Notes, Project Member, etc, falada no capítulo anterior. Para isto deve criar os middlewares e proteger as rotas devidamente.
+
+##Fase 8 - AngularJS
+###Autorização
+
+Nesta fase você implementar a autorização na API. Portanto, não podemos acessar páginas internas sem estar autenticado e quando alguma requisição falhar por causa de token expirado, a aplicação deve refazer as requisições.
+
+Desafio (opcional): Em vez de mostrar um modal na tela com login de usuário, implemente o refresh token com um delay de timeout.
